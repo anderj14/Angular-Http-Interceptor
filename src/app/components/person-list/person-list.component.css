@@ -1,0 +1,10 @@
+.toolbar{
+    padding: 18px;
+    text-align: right;
+}
+
+.buttons{
+    display:flex; 
+    justify-content: space-between;
+}
+

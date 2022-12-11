@@ -1,0 +1,95 @@
+<div *ngIf="state === 'NONE'" role="toolbar" class="toolbar">
+  <button type="button" class="btn btn-primary" (click)="state='ADD'">ADD PERSON</button>
+</div>
+
+<div class="container text-center">
+  <div class="row justify-content-start">
+    <div class="d-flex flex-wrap col">
+      <div
+        *ngFor="let person of persons"
+        class="card"
+        style="width: 18rem; margin: 18px"
+      >
+        <img src="{{ person.profilepic }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{ person.name }} {{ person.lastname }}</h5>
+          <p class="card-text">
+            <a href="{{ person.email }}">{{ person.email }}</a>
+          </p>
+          <div class="buttons">
+            <button
+              *ngIf="state === 'NONE'"
+              type="button"
+              class="btn btn-primary"
+              style="width: 110px"
+              (click)="editPersonData(person)"
+            >
+              Edit
+            </button>
+            <button
+              *ngIf="state === 'NONE'"
+              type="button"
+              class="btn btn-danger"
+              style="width: 110px"
+              (click)="deletePersonData(person)"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="state === 'EDIT' || state === 'ADD'" class="col col-4">
+      <h3>Editor</h3>
+      <form [formGroup]="personForm">
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="email" class="form-control" formControlName="name" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Lastname</label>
+          <input type="email" class="form-control" formControlName="lastname" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Profile Pic.</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="profilepic"
+          />
+        </div>
+
+        <div class="row justify-content-between" style="margin: 18px">
+          <button
+            *ngIf="state === 'ADD'"
+            type="button"
+            class="col-5 btn btn-primary"
+            (click)="addPerson()"
+          >
+            Add User
+          </button>
+          <button
+            *ngIf="state === 'EDIT'"
+            type="button"
+            class="col-5 btn btn-primary"
+            (click)="updatePerson()"
+          >
+            Update User
+          </button>
+          <button
+            type="button"
+            class="col-5 btn btn-danger"
+            (click)="cancelPersonEdition()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
