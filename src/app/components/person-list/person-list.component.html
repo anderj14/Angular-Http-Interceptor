@@ -1,5 +1,9 @@
 <div *ngIf="state === 'NONE'" role="toolbar" class="toolbar">
-  <button type="button" class="btn btn-primary" (click)="state='ADD'">ADD PERSON</button>
+  <button type="button" class="btn btn-primary m-3" (click)="state='ADD'">ADD PERSON</button>
+  <button type="button" class="btn btn-danger m-3" (click)="do404()">404</button>
+
+  <button type="button" class="btn btn-primary m-3" (click)="loginUser()">LOGIN</button>
+  <button type="button" class="btn btn-primary m-3" (click)="logoutUser()">LOGOUT</button>
 </div>
 
 <div class="container text-center">

@@ -33,4 +33,10 @@ export class PersonsService {
     
     return this.httpClient.delete<Person>(`${url}/${person.id}`);
   }
+
+  public get404Persons():Observable<Person[]>{
+    const url: string = environment.baseAPI + '404';
+    
+    return this.httpClient.get<Person[]>(url);
+  }
 }

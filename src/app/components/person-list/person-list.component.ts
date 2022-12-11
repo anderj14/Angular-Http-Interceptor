@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Person } from 'src/app/interfaces/person';
+import { AuthService } from 'src/app/services/auth.service';
 import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class PersonListComponent implements OnInit {
 
   constructor(
     private personService: PersonsService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {
     this.personForm = this.formBuilder.group({
       email: ['', Validators.required],
@@ -95,5 +97,17 @@ export class PersonListComponent implements OnInit {
     this.personService.detelePerson(person).subscribe(()=> {
       this.refrechPersons();
     })
+  }
+
+  loginUser(){
+    this.authService.login('Som Auth Data')
+  }
+
+  logoutUser(){
+    this.authService.logout('Som Auth Data')
+  }
+
+  do404(){
+    this.personService.get404Persons().subscribe();
   }
 }
